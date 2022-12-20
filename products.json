@@ -1,0 +1,29 @@
+{
+  "Drier":
+  {
+    "nameHebrewProduct": "מייבשי כביסה",
+    "nameHebrewCategory": "חשמל ואלקטרוניקה"	
+  },
+   "Headphones":
+  {
+    "nameHebrewProduct": "אוזניות",
+    "nameHebrewCategory": "חשמל ואלקטרוניקה",
+  },
+
+  "Laptop":
+   {
+    "nameHebrewProduct": "מחשבים ניידים",
+    "nameHebrewCategory": "מחשבים ותוכנות"
+  },
+ 
+    "Telescopes":
+   {
+    "nameHebrewProduct": "טלסקופים",
+    "nameHebrewCategory": "פנאי וספורט"
+  }
+  
+  }
+   
+  
+  
+ 
