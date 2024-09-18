@@ -20,10 +20,7 @@ namespace Infra.Pages
         protected const int SECOND = 1000;
         protected const int MINUTE = 60 * 1000;
         protected const int HOUR = 60 * MINUTE;
-        protected string url;
-        protected string checkoutUrl;
-        protected string cartUrl;
-        protected string merchant;
+
         public static void InitDriver(string _baseUrl)
         {
             baseUrl = _baseUrl;
@@ -35,7 +32,7 @@ namespace Infra.Pages
             options.AddArgument("--no-sandbox");
             options.AddArgument("no-sandbox");
        
-            driver = new ChromeDriver(@"E:\chromedriver_win32", options);
+            driver = new ChromeDriver(@"E:\chromedriver-win32", options);
            
             locatorService = new LocatorService(driver) ;
         }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Infra.Pages
 {
     public class Pages
@@ -19,6 +20,8 @@ namespace Infra.Pages
         //    }
         //    return _adminPage;
         //}
+        private static TrainSearchPage _trainSearchPage;
+        public static TrainSearchPage trainSearchPage => _trainSearchPage ?? (_trainSearchPage = new TrainSearchPage());
 
         private static ParallelTestPage _parallelPage;
         public static ParallelTestPage parallelPage => _parallelPage ?? (_parallelPage = new ParallelTestPage());
@@ -37,7 +40,10 @@ namespace Infra.Pages
 
         private static LaptopPage _laptopPage;
         public static LaptopPage laptopPage => _laptopPage ?? (_laptopPage = new LaptopPage());
-        
+
+        private static HddPage _hddPage;
+        public static HddPage hddPage => _hddPage ?? (_hddPage = new HddPage());
+
         private static TelescopesPage _telescopesPage;
         public static TelescopesPage telescopesPage => _telescopesPage ?? (_telescopesPage = new TelescopesPage());
 

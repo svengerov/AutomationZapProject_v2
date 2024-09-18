@@ -118,7 +118,7 @@ namespace Infra.Pages
         }
         */
 
-        public void differentElements(string el)
+        public void handleDifferentWebElementsTraining(string el)
         {
             if (el == "radio")
             {
@@ -222,10 +222,16 @@ namespace Infra.Pages
                 Console.ReadLine();
 
             }
-            //*[@id="4th"]
-       //     / html / body / div[1] / div[3] / div / div / div[2] / div[3] / table / tbody / tr[2] / td[4] / div
-            //*[@id="4th"]
 
+        public string getTextFromSite()
+        {
+            driver.Navigate().GoToUrl("http://test.rubywatir.com/index.php");
+            var header1 = driver.FindElement(By.TagName("h1"));
+            //*[@id="content"]/div/div/div[2]/p[1]
+            string textUnderHeader1 = header1.Text;
+            return textUnderHeader1;
+        }
+           
 
         }
     }
