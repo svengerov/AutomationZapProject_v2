@@ -8,6 +8,22 @@ namespace Infra.Helpers
 {
     public class Converter   //$100 -> 100, €100 -> 99, ₪100 -> 29
     {
+        public static string ConvertFromStringWithComma(string textWithComma)  //"11,13" -> "11.13"
+        {
+            string temp = "";
+            for (int i = 0; i < textWithComma.Length; i++)
+            {
+                if (textWithComma[i] == ',')
+                {
+                    temp += '.';
+                }
+                else
+                {
+                    temp += textWithComma[i];
+                }
+            }
+            return temp;  
+        }
 
         public double Convert(string price)
         {

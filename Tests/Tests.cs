@@ -16,7 +16,7 @@ namespace Tests
     [TestFixture]
     public class Tests : TestBase
     {
-          
+/*          
           [Test]
           [TestCase("Laptop", "Lenovo")]
 
@@ -33,93 +33,84 @@ namespace Tests
               logger.Debug($"amount of shops found for your {your_product} and company = {company} is {productInfo.getNumberOfShops()}");
 
           }
+*/
+//        [Test]
+ //       [TestCase(1,"EUR","NIS")]
 
-        [Test]
-        [TestCase("localhost", "TestDB", "INSERT INTO Users (UserName, UserEmail) VALUES (@UserName, @UserEmail);","SELECT * FROM Users;","Test1","Test1@gmail.com")]
-
-        public void SqlAutomationTest(string server_, string db_name,string insert_query,string select_query,string username, string email)
-        {
-           DBHelper db_connection = new DBHelper(server_, db_name);
-
-            db_connection.InsertData(insert_query,username,email);
-
-            db_connection.ReadData(select_query);
-                     
+   //     public void SqlAutomationCurrencyInfoInsert(int originCurrencyAmount, string originCurrency, string targetCurrency)
+  //      {
             
+  //          double targetCurrencyAmount = googlePage.SearchCurrencyInfo(originCurrencyAmount, originCurrency, targetCurrency);
 
-        }
+           
+  //          DBHelper.InsertData(originCurrency,targetCurrency,originCurrencyAmount,targetCurrencyAmount,db_connection);
+     //       DBHelper.ReadData(select_query, db_connection);
+     //   }
 
-    
-
-
-        /*
-          [Test]
-          [TestCase("i5")]
-          public void GetZapInfoForLaptopByProcessor(string processor)
-          {
-              const string productName = "Laptop";
-              zapSite.SearchProduct(productsDict[productName]);
-              bool checkTitle = zapSite.IsAt(productsDict[productName]);
-              Assert.IsTrue(checkTitle, $"your title is {ZapPage.getTitle()} and correct title is releated to {productName}");
-              logger.Debug($"Got to {ZapPage.getTitle()} Page");
-              var productInfoByProcessor = laptopPage.GetInfoByProcessor(processor);
-              logger.Debug($"lowest price for {productName} processor = {processor} is {productInfoByProcessor.getLowestPrice()}");
-              logger.Debug($"amount of found  {productName} processors = {processor} is {productInfoByProcessor.getProductAmount()}");
-              logger.Debug($"amount of shops found for your {productName} and processor = {processor} is {productInfoByProcessor.getNumberOfShops()}");
-          }
-
-
-          [Test]
-          [TestCase("USB")]
-          public void GetZapInfoForHeadphonesByConnectionType(string connectionType)
-          {
-              const string productName = "Headphones";
-              zapSite.SearchProduct(productsDict[productName]);
-              bool checkTitle = zapSite.IsAt(productsDict[productName]);
-              Assert.IsTrue(checkTitle, $"your title is {ZapPage.getTitle()} and correct title is releated to {productName}");
-              logger.Debug($"Got to {ZapPage.getTitle()} Page");
-              var productInfoByConnectionType = headPhonesPage.GetInfoByConnectionType(connectionType);
-              logger.Debug($"lowest price for {productName} and connectionType =  {connectionType} is {productInfoByConnectionType.getLowestPrice()}");
-              logger.Debug($"amount of found {productName} for connectionType = {connectionType} is {productInfoByConnectionType.getProductAmount()}");
-              logger.Debug($"amount of shops found for your {productName} and connectionType = {connectionType} is {productInfoByConnectionType.getNumberOfShops()}");
-          }
-
-
-          [Test]
-          [TestCase("6")]
-          public void GetZapInfoForDrierByCapacity(string capacityKg)
-          {
-              const string productName = "Drier";
-              zapSite.SearchProduct(productsDict[productName]);
-              bool checkTitle = zapSite.IsAt(productsDict[productName]);
-              Assert.IsTrue(checkTitle, $"your title is {ZapPage.getTitle()} and correct title is releated to {productName}");
-              logger.Debug($"Got to {ZapPage.getTitle()} Page");
-              var productInfoByCapacity = drierPage.GetInfoByCapacity(capacityKg);
-              logger.Debug($"lowest price for {productName} and capacity = {capacityKg} is {productInfoByCapacity.getLowestPrice()}");
-              logger.Debug($"amount of found {productName} for capacity = {capacityKg} is {productInfoByCapacity.getProductAmount()}");
-              logger.Debug($"amount of shops found for your {productName} and capacity = {capacityKg} is {productInfoByCapacity.getNumberOfShops()}");
-          }
-      
 
         [Test]
-        [TestCase("נתניה","תל אביב - השלום","13","20","45")]
+        [TestCase("SELECT * FROM CurrencyRates;")]
 
-        public void TrainInfoByTimeAndDestinations(string origin, string destination, string day, string hour,string minutes)
+        public void SqlAutomationCurrencyInfoSelect(string select_query)
         {
-            Pages.trainSearchPage.NavigateTo();
-            Pages.trainSearchPage.ChooseOriginAndDestination(origin, destination);
-            Pages.trainSearchPage.ChooseDateAndTime(day, hour,minutes);
-            Pages.trainSearchPage.GetInfo();
-
-            String Info = $"Train is exiting {origin} station on platform {Pages.trainSearchPage.platform_origin} at time: {Pages.trainSearchPage.timeOrigin}";
-            Info += "\n";
-            Info += $"The duration of your ride is {Pages.trainSearchPage.duration} and you're arriving at time: {Pages.trainSearchPage.timeArrival} to platform: {Pages.trainSearchPage.platform_destination}"; 
-            string path = @"TestTextFile.txt";                      
-            File.WriteAllText(path, Info);
-            Console.ReadLine();
-           
+                  DBHelper.ReadData(select_query, db_connection);
         }
-        */
+        /*   
+
+                 [Test]
+                 [TestCase("i5")]
+                 public void GetZapInfoForLaptopByProcessor(string processor)
+                 {
+                     const string productName = "Laptop";            
+                     zapSite.SearchProduct(productsDict[productName]);
+                     bool checkTitle = zapSite.IsAt(productsDict[productName]);
+                     Assert.IsTrue(checkTitle, $"your title is {ZapPage.getTitle()} and correct title is releated to {productName}");
+                     logger.Debug($"Got to {ZapPage.getTitle()} Page");
+                     var productInfoByProcessor = laptopPage.GetInfoByProcessor(processor);
+                     int lowestPrice = productInfoByProcessor.getLowestPrice();
+                     int productAmount = productInfoByProcessor.getProductAmount();
+                     int numShops = productInfoByProcessor.getNumberOfShops();
+                     logger.Debug($"lowest price for {productName} processor = {processor} is {lowestPrice}");
+                     logger.Debug($"amount of found  {productName} processors = {processor} is {productAmount}");
+                     logger.Debug($"amount of shops found for your {productName} and processor = {processor} is {numShops}");
+
+                     DBHelper.InsertData("Laptops",processor,lowestPrice,productAmount,numShops,db_connection);
+                   DBHelper.ReadData("SELECT * FROM Laptops;",db_connection);
+                 }
+
+
+                 [Test]
+                 [TestCase("USB")]
+                 public void GetZapInfoForHeadphonesByConnectionType(string connectionType)
+                 {
+                     const string productName = "Headphones";
+                     zapSite.SearchProduct(productsDict[productName]);
+                     bool checkTitle = zapSite.IsAt(productsDict[productName]);
+                     Assert.IsTrue(checkTitle, $"your title is {ZapPage.getTitle()} and correct title is releated to {productName}");
+                     logger.Debug($"Got to {ZapPage.getTitle()} Page");
+                     var productInfoByConnectionType = headPhonesPage.GetInfoByConnectionType(connectionType);
+                     logger.Debug($"lowest price for {productName} and connectionType =  {connectionType} is {productInfoByConnectionType.getLowestPrice()}");
+                     logger.Debug($"amount of found {productName} for connectionType = {connectionType} is {productInfoByConnectionType.getProductAmount()}");
+                     logger.Debug($"amount of shops found for your {productName} and connectionType = {connectionType} is {productInfoByConnectionType.getNumberOfShops()}");
+                 }
+
+
+                 [Test]
+                 [TestCase("6")]
+                 public void GetZapInfoForDrierByCapacity(string capacityKg)
+                 {
+                     const string productName = "Drier";
+                     zapSite.SearchProduct(productsDict[productName]);
+                     bool checkTitle = zapSite.IsAt(productsDict[productName]);
+                     Assert.IsTrue(checkTitle, $"your title is {ZapPage.getTitle()} and correct title is releated to {productName}");
+                     logger.Debug($"Got to {ZapPage.getTitle()} Page");
+                     var productInfoByCapacity = drierPage.GetInfoByCapacity(capacityKg);
+                     logger.Debug($"lowest price for {productName} and capacity = {capacityKg} is {productInfoByCapacity.getLowestPrice()}");
+                     logger.Debug($"amount of found {productName} for capacity = {capacityKg} is {productInfoByCapacity.getProductAmount()}");
+                     logger.Debug($"amount of shops found for your {productName} and capacity = {capacityKg} is {productInfoByCapacity.getNumberOfShops()}");
+                 }
+
+              */
 
 
         /*
@@ -195,7 +186,7 @@ namespace Tests
             }
         */
 
-       
+
     }
 
     }

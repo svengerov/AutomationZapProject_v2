@@ -1,4 +1,5 @@
 ﻿
+using Infra.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace Infra.Pages
         //    }
         //    return _adminPage;
         //}
+
+      
         private static TrainSearchPage _trainSearchPage;
         public static TrainSearchPage trainSearchPage => _trainSearchPage ?? (_trainSearchPage = new TrainSearchPage());
 
@@ -28,6 +31,9 @@ namespace Infra.Pages
 
         private static ZapPage _zapPage;
         public static ZapPage zapPage => _zapPage ?? (_zapPage = new ZapPage());
+
+        private static GooglePage _googlePage;
+        public static GooglePage googlePage => _googlePage ?? (_googlePage = new GooglePage());
 
         private static ProductPage _productPage;
         public static ProductPage productPage => _productPage ?? (_productPage = new ProductPage());

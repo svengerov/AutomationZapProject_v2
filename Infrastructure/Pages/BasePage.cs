@@ -16,14 +16,16 @@ namespace Infra.Pages
         protected static ILogger logger = LogManager.GetCurrentClassLogger();
         protected static IWebDriver driver;
         protected static string baseUrl = @"http://zap.co.il/";
+        protected static string googleUrl = @"http://google.com/";
         protected static LocatorService locatorService;
         protected const int SECOND = 1000;
         protected const int MINUTE = 60 * 1000;
         protected const int HOUR = 60 * MINUTE;
 
-        public static void InitDriver(string _baseUrl)
+        public static void InitDriver(string _baseUrl,string _googleUrl)
         {
             baseUrl = _baseUrl;
+            googleUrl = _googleUrl;
             ChromeOptions options = new ChromeOptions();
             options.AddArgument("--start-maximized");
             options.AddArgument("--metrics-recording-only");

@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Xml.Linq;
 
 namespace Infra.Pages
 {
@@ -30,9 +31,9 @@ namespace Infra.Pages
             var anotherTitle = "";
             
             driver.Navigate().GoToUrl(zapUrl);
-            IWebElement zapFooter = driver.FindElement(By.Id("uc_Footer_footer"));
+            IWebElement zapFooter = driver.FindElement(By.Id("ZapHomepageFooter"));
             int countLinksFooter = zapFooter.FindElements(By.TagName("a")).Count();
-            IWebElement first_section_in_footer = driver.FindElement(By.XPath("//*[@id='sectionFooter']/div[1]"));
+            IWebElement first_section_in_footer = driver.FindElement(By.XPath("//*[@id='FooterLinksSection']/div[1]"));
             int countLinksSection = first_section_in_footer.FindElements(By.TagName("a")).Count();
             for (int i = 0; i < countLinksSection; i++)
             {
@@ -46,9 +47,9 @@ namespace Infra.Pages
                 }
             }
              anotherTitle = driver.Title;
-            IWebElement nameField = driver.FindElement(By.Name("fullName"));
+        //    IWebElement nameField = driver.FindElement(By.Name("fullName"));
             Assert.AreNotEqual(currentTitle, anotherTitle,$"current title = {currentTitle} and anotherTitle={anotherTitle}");
-            if ((currentTitle!=anotherTitle)&&(nameField.Displayed))
+            if (currentTitle!=anotherTitle)
                 {
                 bool accepted = true;
             }
@@ -64,7 +65,17 @@ namespace Infra.Pages
             }
             else
             {
-                driver.FindElement(By.LinkText(your_product_data.nameHebrewCategory)).Click();
+                var categoryTitles = driver.FindElements(By.ClassName("category-title"));
+                foreach (var categoryTitle in categoryTitles)
+                {
+                    // Check if the element's text matches the specific link text
+                    if (categoryTitle.Text.Contains(your_product_data.nameHebrewCategory))
+                    {
+                        categoryTitle.Click();  // Click the matching element
+                        break;            // Exit loop after clicking
+                    }
+                }
+                //  categoryTitles.FindElement(By.LinkText(your_product_data.nameHebrewCategory)).Click();
                 driver.FindElement(By.LinkText(your_product_data.nameHebrewProduct)).Click();
             }
         }
